@@ -14,16 +14,17 @@ class ProductFactory:
     def create_product(type_: str, product_id: int, name: str, price: float,
                        stock: int, **kwargs):
         """
-        type_    : 'electronics' | 'clothing' | 'grocery'
+        type_    : 'electronics' | 'clothing' | 'grocery' (or anything else)
         **kwargs : extra fields (warranty_years, size, expiry_date, etc.)
         """
         type_ = type_.lower()
         cls = ProductFactory._registry.get(type_)
+        
+        # Fallback to GeneralProduct if type is unknown
         if cls is None:
-            raise ValueError(
-                f"Unknown product type '{type_}'. "
-                f"Valid types: {list(ProductFactory._registry.keys())}"
-            )
+            from models.product import GeneralProduct
+            return GeneralProduct(product_id, name, price, stock, category_name=type_, **kwargs)
+            
         return cls(product_id, name, price, stock, **kwargs)
 
     @staticmethod

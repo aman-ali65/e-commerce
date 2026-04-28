@@ -2,23 +2,23 @@
     {
         "product_id": 101,
         "name": "Laptop",
-        "price": 95000.0,
-        "stock": 6,
+        "price": 95000,
+        "stock": 13,
         "category": "Electronics",
-        "warranty_years": 1
+        "warranty_years": 2
     },
     {
         "product_id": 102,
         "name": "Smartphone",
-        "price": 45000.0,
-        "stock": 22,
+        "price": 45000,
+        "stock": 25,
         "category": "Electronics",
         "warranty_years": 1
     },
     {
         "product_id": 103,
         "name": "Headphones",
-        "price": 8500.0,
+        "price": 8500,
         "stock": 50,
         "category": "Electronics",
         "warranty_years": 1
@@ -26,49 +26,33 @@
     {
         "product_id": 201,
         "name": "Shalwar Kameez",
-        "price": 2200.0,
-        "stock": 92,
+        "price": 2200,
+        "stock": 97,
         "category": "Clothing",
-        "size": "M"
+        "size": "L"
     },
     {
         "product_id": 202,
         "name": "Jacket",
-        "price": 5500.0,
+        "price": 5500,
         "stock": 40,
         "category": "Clothing",
-        "size": "M"
+        "size": "XL"
     },
     {
         "product_id": 301,
         "name": "Basmati Rice 5kg",
-        "price": 1200.0,
+        "price": 1200,
         "stock": 200,
         "category": "Grocery",
-        "expiry_date": "N/A"
+        "expiry_date": "2026-12"
     },
     {
         "product_id": 302,
         "name": "Olive Oil 1L",
-        "price": 1800.0,
-        "stock": 70,
+        "price": 1800,
+        "stock": 80,
         "category": "Grocery",
-        "expiry_date": "N/A"
-    },
-    {
-        "product_id": 656,
-        "name": "Samsung",
-        "price": 7800.0,
-        "stock": 12000,
-        "category": "Electronics",
-        "warranty_years": 1
-    },
-    {
-        "product_id": 999,
-        "name": "Sony LED TV",
-        "price": 85000.0,
-        "stock": 14,
-        "category": "Electronics",
-        "warranty_years": 1
+        "expiry_date": "2025-06"
     }
 ]

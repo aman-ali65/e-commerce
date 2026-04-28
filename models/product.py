@@ -102,3 +102,19 @@ class Grocery(Product):
         d = super().to_dict()
         d["expiry_date"] = self.expiry_date
         return d
+
+
+class GeneralProduct(Product):
+    """Fallback for any category that doesn't have a specialized class."""
+    def __init__(self, product_id, name, price, stock, category_name="General", **kwargs):
+        super().__init__(product_id, name, price, stock)
+        self._custom_category = category_name
+        self.info = kwargs  # Store any extra data as a dict
+
+    def category(self):
+        return self._custom_category.capitalize()
+
+    def to_dict(self):
+        d = super().to_dict()
+        d.update(self.info)
+        return d

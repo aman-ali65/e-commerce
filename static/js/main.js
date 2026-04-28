@@ -98,8 +98,38 @@ async function loadProducts() {
     const d = await apiFetch(url);
     allProducts = d.products;
     setText('product-count', d.count+' product'+(d.count!==1?'s':''));
+    updateCategoryDropdown(allProducts); // Update filter dropdown dynamically
     renderProductsTable(allProducts);
   } catch(e) { toast(e.message,'error'); }
+}
+
+function updateCategoryDropdown(products) {
+  const filterSel = document.getElementById('filter-cat');
+  const modalSel  = document.getElementById('product-type');
+  const cats = [...new Set(products.map(p => p.category))].sort();
+  
+  // 1. Update Filter Dropdown
+  if(filterSel) {
+    const cur = filterSel.value;
+    let html = '<option value="">All Categories</option>';
+    cats.forEach(c => html += `<option value="${c}" ${c===cur?'selected':''}>${c}</option>`);
+    filterSel.innerHTML = html;
+  }
+
+  // 2. Update Modal Dropdown
+  if(modalSel) {
+    const cur = modalSel.value;
+    let html = '<option value="">— Select —</option>';
+    // Add hardcoded defaults if they don't exist yet
+    const defaults = ['Electronics', 'Clothing', 'Grocery'];
+    const allCats = [...new Set([...defaults, ...cats])].sort();
+    
+    allCats.forEach(c => {
+      html += `<option value="${c.toLowerCase()}" ${c.toLowerCase()===cur?'selected':''}>${c}</option>`;
+    });
+    html += '<option value="OTHER">➕ Add New Category...</option>';
+    modalSel.innerHTML = html;
+  }
 }
 
 function renderProductsTable(rows) {
@@ -123,12 +153,28 @@ document.getElementById('btn-add-product')?.addEventListener('click', ()=>openMo
 document.getElementById('form-add-product')?.addEventListener('submit', async e=>{
   e.preventDefault();
   const fd=new FormData(e.target);
-  const body={type:fd.get('type'),product_id:+fd.get('product_id'),name:fd.get('name'),price:+fd.get('price'),stock:+fd.get('stock')};
-  const t=body.type;
+  
+  // Custom Category Logic
+  let type = fd.get('type');
+  if(type === 'OTHER') {
+    type = document.getElementById('custom-category').value.trim();
+    if(!type) { toast('Please enter a category name','warn'); return; }
+  }
+
+  const body={type:type,product_id:+fd.get('product_id'),name:fd.get('name'),price:+fd.get('price'),stock:+fd.get('stock')};
+  const t=body.type.toLowerCase();
   if(t==='electronics') body.warranty_years=+fd.get('extra')||1;
   else if(t==='clothing') body.size=fd.get('extra')||'M';
   else if(t==='grocery')  body.expiry_date=fd.get('extra')||'N/A';
-  try{ await apiFetch('/api/products',{method:'POST',body:JSON.stringify(body)}); toast('Product created!'); closeModal('modal-add-product'); e.target.reset(); loadProducts(); }
+  
+  try{ 
+    await apiFetch('/api/products',{method:'POST',body:JSON.stringify(body)}); 
+    toast('Product created!'); 
+    closeModal('modal-add-product'); 
+    e.target.reset(); 
+    document.getElementById('custom-category').style.display = 'none'; // hide back
+    loadProducts(); 
+  }
   catch(err){ toast(err.message,'error'); }
 });
 
@@ -156,10 +202,21 @@ document.getElementById('product-search')?.addEventListener('input', e=>{
 });
 document.getElementById('product-type')?.addEventListener('change', function(){
   const label=document.getElementById('extra-label'), input=document.getElementById('extra-input');
+  const customInput = document.getElementById('custom-category');
   if(!label||!input) return;
-  const map={electronics:['Warranty (years)','1'],clothing:['Size','M'],grocery:['Expiry Date','2026-12']};
-  const v=map[this.value]||['Extra Field',''];
-  label.textContent=v[0]; input.placeholder=v[1];
+
+  // Show/Hide custom category text input
+  if(this.value === 'OTHER') {
+    customInput.style.display = 'block';
+    customInput.focus();
+    label.textContent = 'Extra Description (Optional)';
+    input.placeholder = 'e.g. For general products';
+  } else {
+    customInput.style.display = 'none';
+    const map={electronics:['Warranty (years)','1'],clothing:['Size','M'],grocery:['Expiry Date','2026-12']};
+    const v=map[this.value]||['Extra Field',''];
+    label.textContent=v[0]; input.placeholder=v[1];
+  }
 });
 
 // ═════════════════  ORDERS  ════════════════════════════════════
