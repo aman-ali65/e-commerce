@@ -10,6 +10,15 @@
 |-----------|----------|--------|
 | Stats, charts, recent orders | Filter, add, edit stock | Status tracking, live update |
 
+##### Dashboard Overview
+![Dashboard](img/dashboard.png)
+
+##### Products Manager
+![Products Manager](img/products.png)
+
+##### Orders Manager
+![Orders Manager](img/orders.png)
+
 ---
 
 ## ✨ Features
@@ -183,11 +192,6 @@ order.checkout()   # calls payment.pay() — no if/elif needed
 
 ---
 
-## 🧪 Running Tests
-
-```bash
-pytest tests/test_suite.py -v
-```
 
 ---
 

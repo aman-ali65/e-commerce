@@ -146,3 +146,19 @@
 [2026-04-28 01:20:07] [INFO   ] Flask E-Commerce API starting…
 [2026-04-28 01:26:45] [INFO   ] Sold 4x 'Laptop'. Remaining stock: 6
 [2026-04-28 01:26:45] [SUCCESS] API: Order #1001 placed by Aman Ali — Rs.380,000 via CashOnDelivery
+[2026-04-28 07:40:01] [INFO   ] Order counter synced: next order_id = 1004
+[2026-04-28 07:40:01] [INFO   ] Catalog loaded: 9 products from SQLite
+[2026-04-28 07:40:01] [INFO   ] Flask E-Commerce API starting…
+[2026-04-28 07:40:02] [INFO   ] Order counter synced: next order_id = 1004
+[2026-04-28 07:40:02] [INFO   ] Catalog loaded: 9 products from SQLite
+[2026-04-28 07:40:02] [INFO   ] Flask E-Commerce API starting…
+[2026-04-28 07:44:49] [INFO   ] Sold 10x 'Olive Oil 1L'. Remaining stock: 70
+[2026-04-28 07:44:49] [SUCCESS] API: Order #1004 placed by Umar — Rs.18,000 via CashOnDelivery
+[2026-04-28 07:44:59] [INFO   ] API: Order #1004 status → Cancelled
+[2026-04-28 07:45:35] [INFO   ] API: Order #1003 status → Shipped
+[2026-04-28 07:45:38] [INFO   ] API: Order #1002 status → Delivered
+[2026-04-28 07:45:43] [INFO   ] API: Order #1002 status → Confirmed
+[2026-04-28 07:45:44] [INFO   ] API: Order #1003 status → Confirmed
+[2026-04-28 07:46:21] [INFO   ] Sold 3x 'Smartphone'. Remaining stock: 22
+[2026-04-28 07:46:21] [SUCCESS] API: Order #1005 placed by Aman Ali — Rs.135,000 via EasyPaisa
+[2026-04-28 07:46:24] [INFO   ] API: Order #1005 status → Pending

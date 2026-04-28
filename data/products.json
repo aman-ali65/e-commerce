@@ -11,7 +11,7 @@
         "product_id": 102,
         "name": "Smartphone",
         "price": 45000.0,
-        "stock": 25,
+        "stock": 22,
         "category": "Electronics",
         "warranty_years": 1
     },
@@ -51,7 +51,7 @@
         "product_id": 302,
         "name": "Olive Oil 1L",
         "price": 1800.0,
-        "stock": 80,
+        "stock": 70,
         "category": "Grocery",
         "expiry_date": "N/A"
     },
