@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ECommerce Dashboard</title>
+  <meta name="description" content="E-Commerce backend management dashboard." />
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="stylesheet" href="/static/css/dashboard.css" />
+</head>
+<body>
+
+<!-- ═══════════════  SIDEBAR  ═══════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-icon">🛒</div>
+    <div class="logo-text">Eco<span>Shop</span><br>
+      <small style="font-weight:400;color:var(--muted);font-size:.68rem">Management</small>
+    </div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group-label">Overview</div>
+    <a class="nav-item active" data-page="pg-dashboard"><span class="nav-icon">📊</span> Dashboard</a>
+    <div class="nav-group-label">Catalogue</div>
+    <a class="nav-item" data-page="pg-products"><span class="nav-icon">📦</span> Products</a>
+    <div class="nav-group-label">Operations</div>
+    <a class="nav-item" data-page="pg-orders"><span class="nav-icon">🛒</span> Orders</a>
+    <a class="nav-item" data-page="pg-users"><span class="nav-icon">👤</span> Users</a>
+    <div class="nav-group-label">System</div>
+    <a class="nav-item" data-page="pg-datafiles"><span class="nav-icon">🗄️</span> Data Files</a>
+    <a class="nav-item" data-page="pg-logs"><span class="nav-icon">📋</span> Live Logs</a>
+  </nav>
+  <div class="sidebar-footer">
+    <div>EComShop v1.0</div>
+    <div style="margin-top:4px">Flask · SQLite · Python</div>
+  </div>
+</aside>
+
+<!-- ═══════════════  MAIN WRAP  ═══════════════ -->
+<div class="main-wrap">
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="flex items-center gap-3">
+      <button class="topbar-btn" id="btn-menu">☰</button>
+      <span class="topbar-title">Dashboard</span>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-search">
+        <span class="s-icon">🔍</span>
+        <input type="text" id="global-search" placeholder="Search…" autocomplete="off" />
+      </div>
+      <button class="topbar-btn" onclick="location.reload()" title="Reload">↻</button>
+      <div class="avatar">A</div>
+    </div>
+  </header>
+
+  <!-- ════════════  PAGE: DASHBOARD  ════════════ -->
+  <section class="page active" id="pg-dashboard">
+    <div class="page-header">
+      <div><h1>Dashboard</h1><p>Real-time overview of your store</p></div>
+      <div class="quick-actions">
+        <button class="btn btn-primary" onclick="showPage('pg-products')">➕ Add Product</button>
+        <button class="btn btn-green"   onclick="showPage('pg-orders')">🛒 New Order</button>
+      </div>
+    </div>
+
+    <!-- Stat Cards -->
+    <div class="stat-grid">
+      <div class="stat-card"><div class="stat-icon blue">📦</div>
+        <div class="stat-body"><div class="stat-label">Total Products</div>
+          <div class="stat-value" id="stat-products">—</div><div class="stat-sub">In catalogue</div></div></div>
+      <div class="stat-card"><div class="stat-icon orange">🛒</div>
+        <div class="stat-body"><div class="stat-label">Total Orders</div>
+          <div class="stat-value" id="stat-orders">—</div><div class="stat-sub">All statuses</div></div></div>
+      <div class="stat-card"><div class="stat-icon purple">👤</div>
+        <div class="stat-body"><div class="stat-label">Registered Users</div>
+          <div class="stat-value" id="stat-users">—</div><div class="stat-sub">Customers & admins</div></div></div>
+      <div class="stat-card"><div class="stat-icon green">💰</div>
+        <div class="stat-body"><div class="stat-label">Confirmed Revenue</div>
+          <div class="stat-value" id="stat-revenue" style="font-size:1.25rem">—</div>
+          <div class="stat-sub">Confirmed orders only</div></div></div>
+    </div>
+
+    <!-- Charts row -->
+    <div class="charts-row">
+      <div class="card mb-0">
+        <div class="card-header"><h2>Orders by Status</h2></div>
+        <div class="card-body"><div class="mini-bar" id="status-bars"><div class="spinner"></div></div></div>
+      </div>
+      <div class="card mb-0">
+        <div class="card-header"><h2>Revenue by Payment</h2></div>
+        <div class="card-body"><div class="mini-bar" id="payment-bars"><div class="spinner"></div></div></div>
+      </div>
+    </div>
+
+    <div class="charts-row" style="margin-top:18px">
+      <div class="card mb-0">
+        <div class="card-header"><h2>Products by Category</h2></div>
+        <div class="card-body"><div id="cat-donut"><div class="spinner"></div></div></div>
+      </div>
+      <div class="card mb-0">
+        <div class="card-header">
+          <h2>Recent Orders</h2>
+          <button class="btn btn-outline btn-sm" onclick="loadRecentOrders()">Refresh</button>
+        </div>
+        <div class="card-body" style="padding:0 20px">
+          <div class="activity-feed" id="activity-feed"><div class="spinner" style="margin:20px auto"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════  PAGE: PRODUCTS  ════════════ -->
+  <section class="page" id="pg-products">
+    <div class="page-header">
+      <div><h1>Products</h1><p id="product-count">Loading…</p></div>
+      <div class="flex gap-2">
+        <button class="btn btn-outline btn-sm" id="btn-refresh-products">↻ Refresh</button>
+        <button class="btn btn-primary" id="btn-add-product">➕ Add Product</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body" style="padding:14px 20px">
+        <div class="flex flex-wrap gap-3 items-center">
+          <div class="form-group" style="flex:1;min-width:140px">
+            <label class="form-label">Category</label>
+            <select class="form-control" id="filter-cat">
+              <option value="">All Categories</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Clothing">Clothing</option>
+              <option value="Grocery">Grocery</option>
+            </select>
+          </div>
+          <div class="form-group" style="flex:1;min-width:140px">
+            <label class="form-label">Stock</label>
+            <select class="form-control" id="filter-stock">
+              <option value="">All</option><option value="yes">In Stock Only</option>
+            </select>
+          </div>
+          <div class="form-group" style="flex:2;min-width:200px">
+            <label class="form-label">Search</label>
+            <input class="form-control" type="text" id="product-search" placeholder="Name or category…" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>ID</th><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Actions</th></tr></thead>
+          <tbody id="products-tbody">
+            <tr><td colspan="6" style="text-align:center;padding:28px"><div class="spinner"></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════  PAGE: ORDERS  ════════════ -->
+  <section class="page" id="pg-orders">
+    <div class="page-header">
+      <div><h1>Orders</h1><p id="order-count">Loading…</p></div>
+      <div class="flex gap-2">
+        <button class="btn btn-outline btn-sm" id="btn-refresh-orders">↻ Refresh</button>
+        <button class="btn btn-green" id="btn-place-order">➕ Place Order</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body" style="padding:14px 20px">
+        <div class="flex flex-wrap gap-3 items-center">
+          <div class="form-group" style="flex:1;min-width:160px">
+            <label class="form-label">Status</label>
+            <select class="form-control" id="filter-order-status">
+              <option value="">All Statuses</option>
+              <option>Pending</option><option>Confirmed</option>
+              <option>Shipped</option><option>Delivered</option><option>Cancelled</option>
+            </select>
+          </div>
+          <div class="form-group" style="flex:2;min-width:200px">
+            <label class="form-label">Search</label>
+            <input class="form-control" type="text" id="order-search" placeholder="Order ID or customer name…" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Order #</th><th>Customer</th><th>Payment</th><th>Total</th><th>Status</th><th>Date</th><th>Update</th></tr></thead>
+          <tbody id="orders-tbody">
+            <tr><td colspan="7" style="text-align:center;padding:28px"><div class="spinner"></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════  PAGE: USERS  ════════════ -->
+  <section class="page" id="pg-users">
+    <div class="page-header">
+      <div><h1>Users</h1><p id="user-count">Loading…</p></div>
+      <button class="btn btn-purple" id="btn-add-user">➕ Add User</button>
+    </div>
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Role</th><th>Joined</th></tr></thead>
+          <tbody id="users-tbody">
+            <tr><td colspan="5" style="text-align:center;padding:28px"><div class="spinner"></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════  PAGE: DATA FILES  ════════════ -->
+  <section class="page" id="pg-datafiles">
+    <div class="page-header">
+      <div><h1>Data Files</h1><p>Har cheez kahan save ho rahi hai — format, size, description</p></div>
+      <button class="btn btn-outline btn-sm" onclick="loadDataFiles()">↻ Refresh</button>
+    </div>
+
+    <!-- Format legend -->
+    <div class="card">
+      <div class="card-header"><h2>Persistence Formats Used</h2></div>
+      <div class="card-body">
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px" id="format-legend">
+          <div class="format-pill" style="background:var(--blue-light);border:1.5px solid var(--blue);border-radius:10px;padding:12px">
+            <div style="font-size:1.3rem">📄</div>
+            <div style="font-weight:700;color:var(--blue)">JSON</div>
+            <div style="font-size:.78rem;color:var(--muted)">Human-readable key-value pairs. Easy to debug & share.</div>
+          </div>
+          <div class="format-pill" style="background:var(--orange-light);border:1.5px solid var(--orange);border-radius:10px;padding:12px">
+            <div style="font-size:1.3rem">🗂️</div>
+            <div style="font-weight:700;color:var(--orange)">XML</div>
+            <div style="font-size:.78rem;color:var(--muted)">Tree-structured markup. Used in enterprise web services.</div>
+          </div>
+          <div class="format-pill" style="background:var(--green-light);border:1.5px solid var(--green);border-radius:10px;padding:12px">
+            <div style="font-size:1.3rem">🥒</div>
+            <div style="font-weight:700;color:var(--green)">Pickle</div>
+            <div style="font-size:.78rem;color:var(--muted)">Binary Python serialization. Full object backup with types.</div>
+          </div>
+          <div class="format-pill" style="background:var(--purple-light);border:1.5px solid var(--purple);border-radius:10px;padding:12px">
+            <div style="font-size:1.3rem">🗄️</div>
+            <div style="font-weight:700;color:var(--purple)">SQLite</div>
+            <div style="font-size:.78rem;color:var(--muted)">Relational DB. Supports SQL queries, joins, indexing.</div>
+          </div>
+          <div class="format-pill" style="background:var(--red-light);border:1.5px solid var(--red);border-radius:10px;padding:12px">
+            <div style="font-size:1.3rem">🗜️</div>
+            <div style="font-weight:700;color:var(--red)">GZIP</div>
+            <div style="font-size:.78rem;color:var(--muted)">Compressed archive. 89%+ smaller than original log.</div>
+          </div>
+          <div class="format-pill" style="background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:12px">
+            <div style="font-size:1.3rem">📝</div>
+            <div style="font-weight:700;color:var(--text)">Plain Text</div>
+            <div style="font-size:.78rem;color:var(--muted)">Simple .txt and .log — universally readable, no parsing needed.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- File table -->
+    <div class="card">
+      <div class="card-header"><h2>Files in <code>data/</code> Directory</h2></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>File</th><th>Format</th><th>Description</th><th>Size (KB)</th><th>Last Modified</th></tr></thead>
+          <tbody id="datafiles-tbody">
+            <tr><td colspan="5" style="text-align:center;padding:28px"><div class="spinner"></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════  PAGE: LIVE LOGS  ════════════ -->
+  <section class="page" id="pg-logs">
+    <div class="page-header">
+      <div>
+        <h1>Live Logs</h1>
+        <p>Reading from <code>data/app.log</code> — written by the Singleton Logger</p>
+      </div>
+      <div class="flex gap-2 items-center">
+        <!-- LIVE indicator -->
+        <div id="live-badge" style="display:flex;align-items:center;gap:6px;padding:6px 14px;
+          background:var(--green-light);border:1.5px solid var(--green);border-radius:30px;font-size:.82rem;font-weight:600;color:var(--green)">
+          <span id="live-dot" class="pulse"></span> LIVE
+        </div>
+        <select class="form-control" id="log-lines" style="width:120px">
+          <option value="50">Last 50</option>
+          <option value="80" selected>Last 80</option>
+          <option value="150">Last 150</option>
+        </select>
+        <button class="btn btn-primary" id="btn-refresh-logs">↻ Refresh</button>
+        <button class="btn btn-outline" id="btn-pause-logs">⏸ Pause</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2>Log Output</h2>
+        <div style="font-size:.8rem;color:var(--muted)" id="log-meta">Auto-refreshing every 5s</div>
+      </div>
+      <div class="card-body">
+        <!-- Legend -->
+        <div class="flex gap-2" style="margin-bottom:12px">
+          <span class="badge badge-blue">INFO</span>
+          <span class="badge badge-green">SUCCESS</span>
+          <span class="badge badge-orange">WARNING</span>
+          <span class="badge badge-red">ERROR</span>
+          <span style="font-size:.78rem;color:var(--muted);margin-left:8px">
+            ← Real entries from <strong>Singleton Logger</strong> writing to <code>data/app.log</code>
+          </span>
+        </div>
+        <div class="log-area" id="log-area">Loading…</div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /main-wrap -->
+
+<!-- ═══════════════════════  MODALS  ═══════════════════════ -->
+
+<!-- ── Add Product ── -->
+<div class="modal-overlay" id="modal-add-product">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>➕ Add New Product</h2>
+      <button class="modal-close">✕</button>
+    </div>
+    <form id="form-add-product">
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Product ID</label>
+          <input class="form-control" type="number" name="product_id" required placeholder="e.g. 501" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Type</label>
+          <select class="form-control" name="type" id="product-type" required>
+            <option value="">— Select —</option>
+            <option value="electronics">Electronics</option>
+            <option value="clothing">Clothing</option>
+            <option value="grocery">Grocery</option>
+          </select>
+        </div>
+        <div class="form-group" style="grid-column:1/-1">
+          <label class="form-label">Product Name</label>
+          <input class="form-control" type="text" name="name" required placeholder="e.g. Samsung TV" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Price (Rs.)</label>
+          <input class="form-control" type="number" name="price" required min="0" step="0.01" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Stock</label>
+          <input class="form-control" type="number" name="stock" required min="0" />
+        </div>
+        <div class="form-group" style="grid-column:1/-1">
+          <label class="form-label" id="extra-label">Extra Field</label>
+          <input class="form-control" type="text" name="extra" id="extra-input" placeholder="Select type first" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline modal-cancel">Cancel</button>
+        <button type="submit" class="btn btn-primary">Create Product</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ── Edit Stock ── -->
+<div class="modal-overlay" id="modal-edit-stock">
+  <div class="modal" style="max-width:360px">
+    <div class="modal-header">
+      <h2>✏️ Update Stock</h2>
+      <button class="modal-close">✕</button>
+    </div>
+    <form id="form-edit-stock">
+      <div class="form-group">
+        <label class="form-label">New Stock Quantity</label>
+        <input class="form-control" type="number" id="edit-stock-val" min="0" required />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline modal-cancel">Cancel</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ── Place Order (FIX: proper product picker, no JSON) ── -->
+<div class="modal-overlay" id="modal-place-order">
+  <div class="modal" style="max-width:600px">
+    <div class="modal-header">
+      <h2>🛒 Place New Order</h2>
+      <button class="modal-close">✕</button>
+    </div>
+    <form id="form-place-order">
+
+      <!-- Customer section -->
+      <div style="background:var(--blue-light);border-radius:var(--radius-sm);padding:14px;margin-bottom:16px">
+        <div style="font-size:.8rem;font-weight:700;color:var(--blue);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em">
+          👤 Customer Info
+        </div>
+        <div class="form-grid" style="gap:10px">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input class="form-control" type="text" name="user_name" id="order-user-name" required placeholder="Ali Khan" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input class="form-control" type="email" name="user_email" placeholder="ali@example.com" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Product picker (FIX #4 — no JSON) -->
+      <div style="background:var(--green-light);border-radius:var(--radius-sm);padding:14px;margin-bottom:16px">
+        <div style="font-size:.8rem;font-weight:700;color:var(--green);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em">
+          📦 Select Products
+          <span style="font-weight:400;color:var(--muted);font-size:.72rem;margin-left:6px;text-transform:none">
+            — product chunein, qty set karein, phir <strong>+ Add</strong> dabayein
+          </span>
+        </div>
+        <div class="flex gap-2" style="margin-bottom:10px;flex-wrap:wrap">
+          <select class="form-control" id="order-product-select" style="flex:3;min-width:200px">
+            <option value="">— Select product —</option>
+          </select>
+          <input class="form-control" type="number" id="order-qty" min="1" value="1" style="flex:1;min-width:70px" placeholder="Qty" />
+          <button type="button" class="btn btn-green" onclick="addOrderItem()">+ Add</button>
+        </div>
+
+        <!-- Added items list -->
+        <div id="order-items-list" style="display:flex;flex-direction:column;gap:6px"></div>
+        <div id="order-total-row" style="display:none;margin-top:10px;padding:8px 12px;
+          background:var(--surface);border-radius:var(--radius-sm);
+          font-weight:700;font-size:.95rem;text-align:right">
+          Total: Rs. <span id="order-total-val">0</span>
+        </div>
+        <div id="order-empty-msg" style="text-align:center;color:var(--muted);font-size:.82rem;padding:8px">
+          Koi product nahi chuna — upar se select karo
+        </div>
+      </div>
+
+      <!-- Payment -->
+      <div style="background:var(--orange-light);border-radius:var(--radius-sm);padding:14px">
+        <div style="font-size:.8rem;font-weight:700;color:var(--orange);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em">
+          💳 Payment Method
+        </div>
+        <select class="form-control" name="payment_method">
+          <option value="CreditCard">💳 Credit Card</option>
+          <option value="JazzCash">📱 JazzCash</option>
+          <option value="EasyPaisa">📱 EasyPaisa</option>
+          <option value="CashOnDelivery">💵 Cash on Delivery</option>
+        </select>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline modal-cancel">Cancel</button>
+        <button type="submit" class="btn btn-green">Place Order</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ── Add User (FIX: auto-generate ID) ── -->
+<div class="modal-overlay" id="modal-add-user">
+  <div class="modal" style="max-width:420px">
+    <div class="modal-header">
+      <h2>👤 Add New User</h2>
+      <button class="modal-close">✕</button>
+    </div>
+    <form id="form-add-user">
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">
+            User ID
+            <span style="background:var(--green-light);color:var(--green);
+              font-size:.68rem;padding:2px 7px;border-radius:8px;margin-left:6px;font-weight:600">
+              Auto-generated ✅
+            </span>
+          </label>
+          <input class="form-control" type="number" name="id" id="user-id-input" required readonly
+            style="background:var(--green-light);cursor:not-allowed;font-weight:700;color:var(--green)" />
+          <small class="text-muted text-sm" style="margin-top:3px;display:block">
+            Next available ID — aapko manually nahi likhna
+          </small>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Role</label>
+          <select class="form-control" name="role">
+            <option value="Customer">Customer</option>
+            <option value="Admin">Admin</option>
+            <option value="Seller">Seller</option>
+          </select>
+        </div>
+        <div class="form-group" style="grid-column:1/-1">
+          <label class="form-label">Full Name</label>
+          <input class="form-control" type="text" name="name" required placeholder="Zara Khan" />
+        </div>
+        <div class="form-group" style="grid-column:1/-1">
+          <label class="form-label">Email</label>
+          <input class="form-control" type="email" name="email" required placeholder="zara@pk.com" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline modal-cancel">Cancel</button>
+        <button type="submit" class="btn btn-purple">Add User</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+<script src="/static/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Aman Khan",
+        "email": "aman@daraz.pk",
+        "role": "Customer",
+        "created_at": "2026-04-27 23:59:15"
+    },
+    {
+        "id": 2,
+        "name": "Sara Ali",
+        "email": "sara@daraz.pk",
+        "role": "Customer",
+        "created_at": "2026-04-27 23:59:15"
+    },
+    {
+        "id": 3,
+        "name": "Admin Bhai",
+        "email": "admin@daraz.pk",
+        "role": "Admin",
+        "created_at": "2026-04-27 23:59:15"
+    }
+]

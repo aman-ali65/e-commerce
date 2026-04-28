@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='utf-8'?>
+<products>
+  <product>
+    <product_id>101</product_id>
+    <name>Laptop</name>
+    <price>95000</price>
+    <stock>13</stock>
+    <category>Electronics</category>
+    <warranty_years>2</warranty_years>
+  </product>
+  <product>
+    <product_id>102</product_id>
+    <name>Smartphone</name>
+    <price>45000</price>
+    <stock>25</stock>
+    <category>Electronics</category>
+    <warranty_years>1</warranty_years>
+  </product>
+  <product>
+    <product_id>103</product_id>
+    <name>Headphones</name>
+    <price>8500</price>
+    <stock>50</stock>
+    <category>Electronics</category>
+    <warranty_years>1</warranty_years>
+  </product>
+  <product>
+    <product_id>201</product_id>
+    <name>Shalwar Kameez</name>
+    <price>2200</price>
+    <stock>97</stock>
+    <category>Clothing</category>
+    <size>L</size>
+  </product>
+  <product>
+    <product_id>202</product_id>
+    <name>Jacket</name>
+    <price>5500</price>
+    <stock>40</stock>
+    <category>Clothing</category>
+    <size>XL</size>
+  </product>
+  <product>
+    <product_id>301</product_id>
+    <name>Basmati Rice 5kg</name>
+    <price>1200</price>
+    <stock>200</stock>
+    <category>Grocery</category>
+    <expiry_date>2026-12</expiry_date>
+  </product>
+  <product>
+    <product_id>302</product_id>
+    <name>Olive Oil 1L</name>
+    <price>1800</price>
+    <stock>80</stock>
+    <category>Grocery</category>
+    <expiry_date>2025-06</expiry_date>
+  </product>
+</products>

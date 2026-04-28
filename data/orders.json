@@ -1,0 +1,60 @@
+[
+    {
+        "order_id": 1001,
+        "user": "Aman Khan",
+        "user_id": 1,
+        "items": [
+            {
+                "product": "Laptop",
+                "qty": 1,
+                "subtotal": 95000
+            },
+            {
+                "product": "Headphones",
+                "qty": 2,
+                "subtotal": 17000
+            }
+        ],
+        "total": 112000,
+        "payment": "CreditCard",
+        "status": "Shipped",
+        "created_at": "2026-04-27 23:59:15"
+    },
+    {
+        "order_id": 1002,
+        "user": "Sara Ali",
+        "user_id": 2,
+        "items": [
+            {
+                "product": "Smartphone",
+                "qty": 1,
+                "subtotal": 45000
+            },
+            {
+                "product": "Shalwar Kameez",
+                "qty": 2,
+                "subtotal": 4400
+            }
+        ],
+        "total": 49400,
+        "payment": "JazzCash",
+        "status": "Confirmed",
+        "created_at": "2026-04-27 23:59:15"
+    },
+    {
+        "order_id": 1003,
+        "user": "Aman Khan",
+        "user_id": 1,
+        "items": [
+            {
+                "product": "Basmati Rice 5kg",
+                "qty": 3,
+                "subtotal": 3600
+            }
+        ],
+        "total": 3600,
+        "payment": "CashOnDelivery",
+        "status": "Confirmed",
+        "created_at": "2026-04-27 23:59:15"
+    }
+]

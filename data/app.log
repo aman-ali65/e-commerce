@@ -1,0 +1,148 @@
+[2026-04-27 09:57:54] [INFO   ] === E-Commerce System Started ===
+[2026-04-27 09:57:54] [INFO   ] User created: Aman Khan [Customer]
+[2026-04-27 09:57:54] [INFO   ] User created: Sara Ali [Customer]
+[2026-04-27 09:57:54] [INFO   ] User created: Admin Bhai [Admin]
+[2026-04-27 09:57:54] [INFO   ] Product created: Laptop | Rs.95,000 | Stock: 15
+[2026-04-27 09:57:54] [INFO   ] Product created: Smartphone | Rs.45,000 | Stock: 30
+[2026-04-27 09:57:54] [INFO   ] Product created: Headphones | Rs.8,500 | Stock: 50
+[2026-04-27 09:57:54] [INFO   ] Product created: Shalwar Kameez | Rs.2,200 | Stock: 100
+[2026-04-27 09:57:54] [INFO   ] Product created: Jacket | Rs.5,500 | Stock: 40
+[2026-04-27 09:57:54] [INFO   ] Product created: Basmati Rice 5kg | Rs.1,200 | Stock: 200
+[2026-04-27 09:57:54] [INFO   ] Product created: Olive Oil 1L | Rs.1,800 | Stock: 80
+[2026-04-27 09:57:54] [INFO   ] Sold 2x 'Laptop'. Remaining stock: 13
+[2026-04-27 09:57:54] [INFO   ] Sold 5x 'Smartphone'. Remaining stock: 25
+[2026-04-27 09:57:54] [INFO   ] Sold 3x 'Shalwar Kameez'. Remaining stock: 97
+[2026-04-27 09:57:54] [WARNING] OutOfStockError caught: 'Olive Oil 1L' has only 80 units left; you requested 9999.
+[2026-04-27 09:57:54] [WARNING] InvalidQuantityError caught: Quantity must be positive, got -5.
+[2026-04-27 09:57:54] [SUCCESS] Order #1001 confirmed for Aman Khan — Rs.112,000
+[2026-04-27 09:57:54] [SUCCESS] Order #1002 confirmed for Sara Ali — Rs.49,400
+[2026-04-27 09:57:54] [SUCCESS] Order #1003 confirmed for Aman Khan — Rs.3,600
+[2026-04-27 09:57:54] [INFO   ] Order #1001 status → Shipped
+[2026-04-27 09:57:54] [SUCCESS] === E-Commerce System Finished Successfully ===
+[2026-04-27 09:58:37] [INFO   ] === E-Commerce System Started ===
+[2026-04-27 09:58:37] [INFO   ] User created: Aman Khan [Customer]
+[2026-04-27 09:58:37] [INFO   ] User created: Sara Ali [Customer]
+[2026-04-27 09:58:37] [INFO   ] User created: Admin Bhai [Admin]
+[2026-04-27 09:58:37] [INFO   ] Product created: Laptop | Rs.95,000 | Stock: 15
+[2026-04-27 09:58:37] [INFO   ] Product created: Smartphone | Rs.45,000 | Stock: 30
+[2026-04-27 09:58:37] [INFO   ] Product created: Headphones | Rs.8,500 | Stock: 50
+[2026-04-27 09:58:37] [INFO   ] Product created: Shalwar Kameez | Rs.2,200 | Stock: 100
+[2026-04-27 09:58:37] [INFO   ] Product created: Jacket | Rs.5,500 | Stock: 40
+[2026-04-27 09:58:37] [INFO   ] Product created: Basmati Rice 5kg | Rs.1,200 | Stock: 200
+[2026-04-27 09:58:37] [INFO   ] Product created: Olive Oil 1L | Rs.1,800 | Stock: 80
+[2026-04-27 09:58:37] [INFO   ] Sold 2x 'Laptop'. Remaining stock: 13
+[2026-04-27 09:58:37] [INFO   ] Sold 5x 'Smartphone'. Remaining stock: 25
+[2026-04-27 09:58:37] [INFO   ] Sold 3x 'Shalwar Kameez'. Remaining stock: 97
+[2026-04-27 09:58:37] [WARNING] OutOfStockError caught: 'Olive Oil 1L' has only 80 units left; you requested 9999.
+[2026-04-27 09:58:37] [WARNING] InvalidQuantityError caught: Quantity must be positive, got -5.
+[2026-04-27 09:58:37] [SUCCESS] Order #1001 confirmed for Aman Khan — Rs.112,000
+[2026-04-27 09:58:37] [SUCCESS] Order #1002 confirmed for Sara Ali — Rs.49,400
+[2026-04-27 09:58:37] [SUCCESS] Order #1003 confirmed for Aman Khan — Rs.3,600
+[2026-04-27 09:58:37] [INFO   ] Order #1001 status → Shipped
+[2026-04-27 09:58:37] [SUCCESS] === E-Commerce System Finished Successfully ===
+[2026-04-27 11:40:55] [INFO   ] === E-Commerce System Started ===
+[2026-04-27 11:40:55] [INFO   ] User created: Aman Khan [Customer]
+[2026-04-27 11:40:55] [INFO   ] User created: Sara Ali [Customer]
+[2026-04-27 11:40:55] [INFO   ] User created: Admin Bhai [Admin]
+[2026-04-27 11:40:55] [INFO   ] Product created: Laptop | Rs.95,000 | Stock: 15
+[2026-04-27 11:40:55] [INFO   ] Product created: Smartphone | Rs.45,000 | Stock: 30
+[2026-04-27 11:40:55] [INFO   ] Product created: Headphones | Rs.8,500 | Stock: 50
+[2026-04-27 11:40:55] [INFO   ] Product created: Shalwar Kameez | Rs.2,200 | Stock: 100
+[2026-04-27 11:40:55] [INFO   ] Product created: Jacket | Rs.5,500 | Stock: 40
+[2026-04-27 11:40:55] [INFO   ] Product created: Basmati Rice 5kg | Rs.1,200 | Stock: 200
+[2026-04-27 11:40:55] [INFO   ] Product created: Olive Oil 1L | Rs.1,800 | Stock: 80
+[2026-04-27 11:40:55] [INFO   ] Sold 2x 'Laptop'. Remaining stock: 13
+[2026-04-27 11:40:55] [INFO   ] Sold 5x 'Smartphone'. Remaining stock: 25
+[2026-04-27 11:40:55] [INFO   ] Sold 3x 'Shalwar Kameez'. Remaining stock: 97
+[2026-04-27 11:40:55] [WARNING] OutOfStockError caught: 'Olive Oil 1L' has only 80 units left; you requested 9999.
+[2026-04-27 11:40:55] [WARNING] InvalidQuantityError caught: Quantity must be positive, got -5.
+[2026-04-27 11:40:55] [SUCCESS] Order #1001 confirmed for Aman Khan — Rs.112,000
+[2026-04-27 11:40:55] [SUCCESS] Order #1002 confirmed for Sara Ali — Rs.49,400
+[2026-04-27 11:40:55] [SUCCESS] Order #1003 confirmed for Aman Khan — Rs.3,600
+[2026-04-27 11:40:55] [INFO   ] Order #1001 status → Shipped
+[2026-04-27 11:40:55] [SUCCESS] === E-Commerce System Finished Successfully ===
+[2026-04-27 11:44:12] [INFO   ] === E-Commerce System Started ===
+[2026-04-27 11:44:12] [INFO   ] User created: Aman Khan [Customer]
+[2026-04-27 11:44:12] [INFO   ] User created: Sara Ali [Customer]
+[2026-04-27 11:44:12] [INFO   ] User created: Admin Bhai [Admin]
+[2026-04-27 11:44:12] [INFO   ] Product created: Laptop | Rs.95,000 | Stock: 15
+[2026-04-27 11:44:12] [INFO   ] Product created: Smartphone | Rs.45,000 | Stock: 30
+[2026-04-27 11:44:12] [INFO   ] Product created: Headphones | Rs.8,500 | Stock: 50
+[2026-04-27 11:44:12] [INFO   ] Product created: Shalwar Kameez | Rs.2,200 | Stock: 100
+[2026-04-27 11:44:12] [INFO   ] Product created: Jacket | Rs.5,500 | Stock: 40
+[2026-04-27 11:44:12] [INFO   ] Product created: Basmati Rice 5kg | Rs.1,200 | Stock: 200
+[2026-04-27 11:44:12] [INFO   ] Product created: Olive Oil 1L | Rs.1,800 | Stock: 80
+[2026-04-27 11:44:12] [INFO   ] Sold 2x 'Laptop'. Remaining stock: 13
+[2026-04-27 11:44:12] [INFO   ] Sold 5x 'Smartphone'. Remaining stock: 25
+[2026-04-27 11:44:12] [INFO   ] Sold 3x 'Shalwar Kameez'. Remaining stock: 97
+[2026-04-27 11:44:12] [WARNING] OutOfStockError caught: 'Olive Oil 1L' has only 80 units left; you requested 9999.
+[2026-04-27 11:44:12] [WARNING] InvalidQuantityError caught: Quantity must be positive, got -5.
+[2026-04-27 11:44:12] [SUCCESS] Order #1001 confirmed for Aman Khan — Rs.112,000
+[2026-04-27 11:44:12] [SUCCESS] Order #1002 confirmed for Sara Ali — Rs.49,400
+[2026-04-27 11:44:12] [SUCCESS] Order #1003 confirmed for Aman Khan — Rs.3,600
+[2026-04-27 11:44:12] [INFO   ] Order #1001 status → Shipped
+[2026-04-27 11:44:12] [SUCCESS] === E-Commerce System Finished Successfully ===
+[2026-04-27 23:58:31] [INFO   ] === E-Commerce System Started ===
+[2026-04-27 23:58:58] [INFO   ] === E-Commerce System Started ===
+[2026-04-27 23:59:15] [INFO   ] === E-Commerce System Started ===
+[2026-04-27 23:59:15] [INFO   ] User created: Aman Khan [Customer]
+[2026-04-27 23:59:15] [INFO   ] User created: Sara Ali [Customer]
+[2026-04-27 23:59:15] [INFO   ] User created: Admin Bhai [Admin]
+[2026-04-27 23:59:15] [INFO   ] Product created: Laptop | Rs.95,000 | Stock: 15
+[2026-04-27 23:59:15] [INFO   ] Product created: Smartphone | Rs.45,000 | Stock: 30
+[2026-04-27 23:59:15] [INFO   ] Product created: Headphones | Rs.8,500 | Stock: 50
+[2026-04-27 23:59:15] [INFO   ] Product created: Shalwar Kameez | Rs.2,200 | Stock: 100
+[2026-04-27 23:59:15] [INFO   ] Product created: Jacket | Rs.5,500 | Stock: 40
+[2026-04-27 23:59:15] [INFO   ] Product created: Basmati Rice 5kg | Rs.1,200 | Stock: 200
+[2026-04-27 23:59:15] [INFO   ] Product created: Olive Oil 1L | Rs.1,800 | Stock: 80
+[2026-04-27 23:59:15] [INFO   ] Sold 2x 'Laptop'. Remaining stock: 13
+[2026-04-27 23:59:15] [INFO   ] Sold 5x 'Smartphone'. Remaining stock: 25
+[2026-04-27 23:59:15] [INFO   ] Sold 3x 'Shalwar Kameez'. Remaining stock: 97
+[2026-04-27 23:59:15] [WARNING] OutOfStockError caught: 'Olive Oil 1L' has only 80 units left; you requested 9999.
+[2026-04-27 23:59:15] [WARNING] InvalidQuantityError caught: Quantity must be positive, got -5.
+[2026-04-27 23:59:15] [SUCCESS] Order #1001 confirmed for Aman Khan — Rs.112,000
+[2026-04-27 23:59:15] [SUCCESS] Order #1002 confirmed for Sara Ali — Rs.49,400
+[2026-04-27 23:59:15] [SUCCESS] Order #1003 confirmed for Aman Khan — Rs.3,600
+[2026-04-27 23:59:15] [INFO   ] Order #1001 status → Shipped
+[2026-04-27 23:59:15] [INFO   ] Transaction logged → Aman Khan purchase Rs.95,000
+[2026-04-27 23:59:15] [INFO   ] Transaction logged → Aman Khan purchase Rs.17,000
+[2026-04-27 23:59:15] [INFO   ] Transaction logged → Sara Ali purchase Rs.45,000
+[2026-04-27 23:59:15] [INFO   ] Transaction logged → Sara Ali purchase Rs.4,400
+[2026-04-27 23:59:15] [INFO   ] Transaction logged → Aman Khan purchase Rs.3,600
+[2026-04-27 23:59:15] [SUCCESS] === E-Commerce System Finished Successfully ===
+[2026-04-27 23:59:28] [INFO   ] Flask E-Commerce API starting…
+[2026-04-27 23:59:29] [INFO   ] Flask E-Commerce API starting…
+[2026-04-28 00:18:04] [INFO   ] Sold 3x 'Laptop'. Remaining stock: 10
+[2026-04-28 00:18:04] [SUCCESS] API: Order #1001 placed by Aman Ali — Rs.285,000 via JazzCash
+[2026-04-28 00:36:34] [INFO   ] Flask E-Commerce API starting…
+[2026-04-28 00:48:39] [INFO   ] API: Created product Samsung (ID=656)
+[2026-04-28 00:48:55] [INFO   ] API: Stock updated for product 656 → 12000
+[2026-04-28 00:49:59] [INFO   ] Catalog loaded: 8 products from SQLite
+[2026-04-28 00:49:59] [INFO   ] Flask E-Commerce API starting…
+[2026-04-28 00:50:25] [INFO   ] Catalog loaded: 8 products from SQLite
+[2026-04-28 00:50:25] [INFO   ] Flask E-Commerce API starting…
+[2026-04-28 00:54:47] [INFO   ] API: Created product 'Sony LED TV' (ID=999) — catalog now has 9 products
+[2026-04-28 01:01:16] [INFO   ] Sold 6x 'Sony LED TV'. Remaining stock: 14
+[2026-04-28 01:01:16] [SUCCESS] API: Order #1001 placed by Sara — Rs.510,000 via CashOnDelivery
+[2026-04-28 01:02:18] [INFO   ] Catalog loaded: 9 products from SQLite
+[2026-04-28 01:02:18] [INFO   ] Flask E-Commerce API starting…
+[2026-04-28 01:07:12] [INFO   ] Catalog loaded: 9 products from SQLite
+[2026-04-28 01:07:13] [INFO   ] Flask E-Commerce API starting…
+[2026-04-28 01:08:07] [INFO   ] Catalog loaded: 9 products from SQLite
+[2026-04-28 01:08:07] [INFO   ] Flask E-Commerce API starting…
+[2026-04-28 01:08:18] [INFO   ] Catalog loaded: 9 products from SQLite
+[2026-04-28 01:08:18] [INFO   ] Flask E-Commerce API starting…
+[2026-04-28 01:16:20] [INFO   ] Catalog loaded: 9 products from SQLite
+[2026-04-28 01:16:20] [INFO   ] Flask E-Commerce API starting…
+[2026-04-28 01:17:14] [INFO   ] Catalog loaded: 9 products from SQLite
+[2026-04-28 01:17:14] [INFO   ] Flask E-Commerce API starting…
+[2026-04-28 01:17:15] [INFO   ] Catalog loaded: 9 products from SQLite
+[2026-04-28 01:17:15] [INFO   ] Flask E-Commerce API starting…
+[2026-04-28 01:17:48] [INFO   ] Sold 5x 'Shalwar Kameez'. Remaining stock: 92
+[2026-04-28 01:17:48] [SUCCESS] API: Order #1001 placed by zain — Rs.11,000 via CreditCard
+[2026-04-28 01:20:06] [INFO   ] Catalog loaded: 9 products from SQLite
+[2026-04-28 01:20:06] [INFO   ] Flask E-Commerce API starting…
+[2026-04-28 01:20:07] [INFO   ] Catalog loaded: 9 products from SQLite
+[2026-04-28 01:20:07] [INFO   ] Flask E-Commerce API starting…
+[2026-04-28 01:26:45] [INFO   ] Sold 4x 'Laptop'. Remaining stock: 6
+[2026-04-28 01:26:45] [SUCCESS] API: Order #1001 placed by Aman Ali — Rs.380,000 via CashOnDelivery
